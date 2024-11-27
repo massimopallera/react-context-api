@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react'
 
-import List from '../components/List/List'
-import FormComponent from '../components/Form/Form'
+import List from '../components/List'
+import FormComponent from '../components/Form'
 import { useContext } from 'react'
 import GlobalContext from '../context/GlobalContext'
 

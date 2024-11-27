@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
-import GlobalContext from "../../context/GlobalContext"
+import GlobalContext from "../context/GlobalContext"
 
 export default function List({ post, index, uri, handleDelete, returnNewPosts, resourcePath }) {
 
@@ -29,7 +29,7 @@ export default function List({ post, index, uri, handleDelete, returnNewPosts, r
           <h3>{post.title}</h3>
         </div>
   
-        <div className="card-body d-flex gap-3 flex-sm-wrap flex-xl-nowrap">
+        <div className="card-body d-md-flex justify-content-center gap-3 flex-sm-wrap flex-xl-nowrap">
           <img src={resourcePath + post.image} alt="" className="rounded"/>
           <p>{post.content}</p>
           <div className="d-flex align-items-end w-100 justify-content-end gap-3">
