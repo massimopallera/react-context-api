@@ -14,39 +14,45 @@ const initialFormData = {
 export default function Form({
   // INPUT
   handleOverlay,
-  // path,
+  // resourcePath,
 
   // OUTPUT
   returnNewPosts}) {
 
   const { tagsList, categoriesList, resourcePath, setPosts } = useContext(GlobalContext)
-  const path = resourcePath
+  // const resourcePath = resourcePath
   // const [tagsList, setTagsList] = useState([])
   // const [categoriesList, setCategoriesList] = useState([])
   const [formData, setFormData] = useState(initialFormData);
 
 
   // to handle form submit
-  function handleSubmit(e, path) { 
+  function handleSubmit(e, resourcePath) { 
     e.preventDefault()      
     
-    const url = `${path}posts`
+    const url = `${resourcePath}posts`
 
-    // const url = "http://localhost:3000/posts"
     const slug = formData.title.trim().toLowerCase()
     
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        ...formData,
-        slug
-      }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then(resp => resp.json())
-      .then(data => setPosts(data.posts))
-    
-    setFormData(initialFormData)
+    const { title, content, image } = formData
+    if (title && content && image) {
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          ...formData,
+          slug
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then(resp => resp.json())
+        .then(data => setPosts(data.posts))
+      
+      setFormData(initialFormData)      
+    } else {
+      alert("Please fill out all fields")
+    }
+
+
 
   }
 
@@ -85,8 +91,8 @@ export default function Form({
 
 
   //ajax call function for tags and categories
-/*   function fetchSet(path, set, slug) {
-    const url = `${path}${slug}`
+/*   function fetchSet(resourcePath, set, slug) {
+    const url = `${resourcePath}${slug}`
     // console.log(url);
     
 
@@ -97,17 +103,17 @@ export default function Form({
   }
 
   //get tags
-  useEffect(() => fetchSet(path, setTagsList, 'tags'),[])
+  useEffect(() => fetchSet(resourcePath, setTagsList, 'tags'),[])
   
   //get categories
-  useEffect(() => fetchSet(path, setCategoriesList, 'categories'), [])
+  useEffect(() => fetchSet(resourcePath, setCategoriesList, 'categories'), [])
     
  */
 
   return (
     <form
       className="form-control bg-dark text-white py-3 px-5"
-      onSubmit={(e) => handleSubmit(e, path)} id="offCanvas" >
+      onSubmit={(e) => handleSubmit(e, resourcePath)} id="offCanvas" >
 
       {/* TITLE INPUT */}
       <label htmlFor="title">Inserisci titolo del post</label>
