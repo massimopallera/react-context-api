@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom"
+import { useContext } from "react";
+import GlobalContext from "../context/GlobalContext";
 
-export default function SinglePost({uri, resourcePath}) {
+export default function SinglePost() {
   const params = useParams()
   const [post, setPost] = useState({image: ''}) //image default set to not get error message in console
   const [next, setNext] = useState(null) // to save next slug
   const [prev, setPrev] = useState(null) // to save prev slug
+
+  const {resourcePath, uri} = useContext(GlobalContext)
 
   function fetchPost(slug = params.slug) {
     fetch(`${uri}/${slug}`)
