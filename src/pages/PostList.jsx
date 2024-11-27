@@ -2,28 +2,17 @@ import { useState,useEffect } from 'react'
 
 import List from '../components/List/List'
 import FormComponent from '../components/Form/Form'
+import { useContext } from 'react'
+import GlobalContext from '../context/GlobalContext'
 
 
+export default function PostList() {
 
-
-export default function PostList({uri, resourcePath}) {
-
-
-  const [posts, setPosts] = useState([])
-
-  // AJAX call
-  function fetchData(url = "http://localhost:3000/posts") {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => setPosts(data.data))
-      .catch(err => console.error(err))
-  }
-
+  const { posts, resourcePath, uri } = useContext(GlobalContext)
+  
   function handleOverlay() { 
     document.querySelector('.overlay').classList.toggle('active')
   }
-
-  useEffect(() => fetchData(uri),[])
 
   return (
     <>
