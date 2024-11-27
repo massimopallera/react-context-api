@@ -24,9 +24,9 @@ export default function PostList() {
       <div className="overlay">
         {/* FORM */}
         <FormComponent
-          uri={resourcePath}
+          // uri={resourcePath}
           handleOverlay={handleOverlay}
-          returnNewPosts={(newPosts) => setPosts(newPosts)}
+          // returnNewPosts={(newPosts) => setPosts(newPosts)}
         />
       </div>
 

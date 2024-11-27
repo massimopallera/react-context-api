@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import GlobalContext from "../../context/GlobalContext"
 
 export default function List({ post, index, uri, handleDelete, returnNewPosts, resourcePath }) {
-  
+
+  const {setPosts} = useContext(GlobalContext)
+
+
   function handleDelete(slug) {
     
     const url = `${uri}/${slug}`
@@ -10,7 +15,7 @@ export default function List({ post, index, uri, handleDelete, returnNewPosts, r
       method: 'DELETE',
     })
       .then(resp => resp.json())
-      .then(data => returnNewPosts(data.data))
+      .then(data => setPosts(data.data))
   }
 
   const navigate = useNavigate()
