@@ -27,25 +27,17 @@ function App() {
   const [tagsList, setTagsList] = useState([])
   const [categoriesList, setCategoriesList] = useState([])
 
-    //ajax call function for tags and categories
-    function fetchSet(uri, set, slug) {
-      const url = `${uri}${slug}`
-      // console.log(url);
-      
-  
-      fetch(url)
-        .then(resp => resp.json())
-        .then(data => set(data[slug]))
-       .catch(err => console.error(err))
-    }
-  
-    //get tags
-    useEffect(() => fetchSet(resourcePath, setTagsList, 'tags'),[])
-    
-    //get categories
-    useEffect(() => fetchSet(resourcePath, setCategoriesList, 'categories'), [])
-  
+  //ajax call function for tags and categories
+  function fetchSet(uri, set, slug) {
+    const url = `${uri}${slug}` //create url
 
+    fetch(url)
+      .then(resp => resp.json())
+      .then(data => set(data[slug]))
+      .catch(err => console.error(err))
+  }
+ 
+  
   // AJAX call
   function fetchData(url = "http://localhost:3000/posts") {
     fetch(url)
@@ -55,19 +47,24 @@ function App() {
   }
 
 
+  //get tags and categories
+  useEffect(() => fetchSet(resourcePath, setTagsList, 'tags'),[])
+  useEffect(() => fetchSet(resourcePath, setCategoriesList, 'categories'), [])
 
+  //get posts
   useEffect(() => fetchData(uri),[])
 
   return (
-    <GlobalContext.Provider
+
+    <GlobalContext.Provider /*  context provider */
         value={{ posts,setPosts, resourcePath, uri, tagsList, categoriesList }}>
-      <BrowserRouter>
+      <BrowserRouter > 
         <Routes>
           <Route element={<DefaultLayout />}>
-            <Route path='/' element={<Home />}/>
-            <Route path='/posts' element={<PostList />}/>
-            <Route path='/chi-siamo' element={<ChiSiamo />}/>
-            <Route path='posts/:slug' element={<SinglePost />}/>
+            <Route path='/' element={<Home />}/> {/* Home */}
+            <Route path='/posts' element={<PostList />}/> {/* Posts list */}
+            <Route path='/chi-siamo' element={<ChiSiamo />}/> {/* Chi siamo */}
+            <Route path='posts/:slug' element={<SinglePost />}/> {/* Single post by slug */}
           </Route>
         </Routes>
       </BrowserRouter>

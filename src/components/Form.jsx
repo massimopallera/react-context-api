@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
-import { useContext } from "react";
 
 const initialFormData = {
     title: '',
@@ -11,18 +10,9 @@ const initialFormData = {
     published: false
 }  
   
-export default function Form({
-  // INPUT
-  handleOverlay,
-  // resourcePath,
-
-  // OUTPUT
-  returnNewPosts}) {
+export default function Form({handleOverlay}) {
 
   const { tagsList, categoriesList, resourcePath, setPosts } = useContext(GlobalContext)
-  // const resourcePath = resourcePath
-  // const [tagsList, setTagsList] = useState([])
-  // const [categoriesList, setCategoriesList] = useState([])
   const [formData, setFormData] = useState(initialFormData);
 
 
@@ -31,7 +21,6 @@ export default function Form({
     e.preventDefault()      
     
     const url = `${resourcePath}posts`
-
     const slug = formData.title.trim().toLowerCase()
     
     const { title, content, image } = formData
