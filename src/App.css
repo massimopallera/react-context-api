@@ -1,0 +1,167 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+img{
+  max-width: 400px;
+  width: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #555 !important;
+  color: white;  
+}
+
+header{
+  background: #111 !important;
+  padding: 1rem;
+  text-align: center;
+}
+
+main{
+  background: #333;
+  padding: 2rem 0;
+  .container{
+    margin: auto;
+    width: 80%;
+    max-width: 1200px;
+  }
+}
+
+a{
+  text-decoration: none  !important;
+  color: white !important;
+
+  &.active{
+    font-weight: bolder;
+
+  }
+}
+
+.overlay.active{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.overlay{
+  display: none;
+}
+
+.container{
+  min-height:100dvh;
+}
+
+form{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* max-height: 70vh; */
+  overflow-y: auto;
+  max-width: 70vw;
+  background: #333;
+
+  h2{
+    padding-left: .8rem;
+  }
+  input[type="text"]{
+    background: #EEE;
+    font-size: 15px;
+    width: 100%;
+    padding: .5rem .9rem;
+    margin: .5rem 0 2rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    
+  }
+  
+  .submit-button{
+    text-align: center;
+    button{
+      background: #EEE;
+      padding: .5rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid transparent;
+      font-size: 1rem;
+    }
+  }
+}
+
+.tags{
+
+  margin: 2rem 0;
+  padding: 1rem 3rem;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  background: #222;
+  border-radius: 10px;
+
+  .tag-item{
+    width: calc((100% / 12) * 3);
+    line-height: 1.5rem;
+  }
+}
+label{
+  font-size: 18px;
+  padding-left: .5rem;
+}
+
+#category{
+  padding: .5rem .75rem;
+  font-size: 16px;
+  border-radius: 18px;
+}
+
+.align_content_card{
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+
+
+}
+
+.buttonContainer{
+  text-align: center;  
+  width: 100%;
+}
+
+.card{
+  height: 700px !important;
+}
+
+.left{
+  left: 0;
+}
+
+.right, .left{
+  bottom: 0;
+  position: absolute;
+}
+
+.right{
+  right: 0;
+}
+
+@media screen and (max-width: 768px){
+  .align_content_card{
+    justify-content: center !important;
+    gap: 1rem;
+  }
+}
